@@ -1,0 +1,13 @@
+*.env
+*.pyc
+db.sqlite3
+
+*/__pycache__/*
+media
+.vscode
+sent_emails
+env
+migrations
+secrets
+celerybeat-schedule
+.DS_Store
