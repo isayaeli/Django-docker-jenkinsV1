@@ -12,6 +12,14 @@ pipeline {
                 checkout scm
             }
         }
+        
+        stage('Setup Environment') {
+            steps {
+                withCredentials([file(credentialsId: 'django-env-file', variable: 'ENV_FILE')]) {
+                    sh 'cp $ENV_FILE .env'
+                }
+            }
+        }
 
         stage('Build Containers') {
             steps {
