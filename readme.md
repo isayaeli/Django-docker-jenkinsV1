@@ -46,7 +46,7 @@ Wait for Jenkins to start (may take 1-2 minutes).
 
 ## Step 3: Install Docker CLI and Docker Compose Plugin
 
-Since we're running on macOS, we need to install Docker tools inside the Jenkins container:
+If running on macOS, we need to install Docker tools inside the Jenkins container this way:
 
 ```bash
 docker exec -u root jenkins bash -c "
@@ -65,6 +65,20 @@ docker exec -u root jenkins bash -c "
   apt-get install -y docker-ce-cli docker-compose-plugin
 "
 ```
+If running on Linux we need to install Docker tools inside the Jenkins container this way:
+
+``` bash 
+    docker exec -u root jenkins bash -c "
+    apt-get update && \
+    apt-get install -y docker-compose-plugin
+"
+```
+
+If running on Windows we need to install Docker tools inside the Jenkins container this way:
+
+ ``` bash
+    docker exec -u root jenkins bash -c "apt-get update && apt-get install -y ca-certificates curl gnupg lsb-release && mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && echo \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable\" | tee /etc/apt/sources.list.d/docker.list > /dev/null && apt-get update && apt-get install -y docker-ce-cli docker-compose-plugin"
+ ```
 
 This installation takes a few minutes. Wait for it to complete.
 
